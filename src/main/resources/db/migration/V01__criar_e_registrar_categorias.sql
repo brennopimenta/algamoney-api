@@ -17,3 +17,11 @@ INSERT INTO categoria (nome) VALUES ('Supermercado');
 INSERT INTO categoria (nome) VALUES ('Famrmácia');
 INSERT INTO categoria (nome) VALUES ('Outros');
 */
+
+/*
+INSERT INTO lancamento (data_pagamento, data_vencimento, descricao, tipo, valor, codigo_categoria, codigo_pessoa)
+VALUES ('2019-05-02','2019-05-03','Salario Mensal', 'RECEITA', 3000.00, 1, 2);
+
+INSERT INTO lancamento (data_pagamento, data_vencimento, descricao, tipo, valor, codigo_categoria, codigo_pessoa)
+VALUES ('2019-06-01','2019-06-03','Salario Quinzenal', 'DESPESA', 2500.00, 3, 3);
+*/
