@@ -48,14 +48,15 @@ public class PessoaResource {
 
     @GetMapping("/{codigo}")
     public Pessoa buscarPeloCodigo(@PathVariable Long codigo){
-        return this.pessoaRepository.findById(codigo).orElse(null);
+        Pessoa pessoa = pessoaRepository.findOne(codigo);
+        return pessoa;
 
     }
 
     @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long codigo){
-        pessoaRepository.deleteById(codigo);
+        pessoaRepository.delete(codigo);
 
     }
 

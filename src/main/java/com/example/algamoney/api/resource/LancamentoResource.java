@@ -58,7 +58,7 @@ public class LancamentoResource {
 
     @GetMapping("/{codigo}")
     private Lancamento buscarPeloCodigo(@PathVariable Long codigo) {
-        return this.lancamentoRepository.findById(codigo).orElse(null);
+        return this.lancamentoRepository.findOne(codigo);
 
     }
 
@@ -72,7 +72,7 @@ public class LancamentoResource {
     @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long codigo){
-        lancamentoRepository.deleteById(codigo);
+        lancamentoRepository.delete(codigo);
     }
 
 
