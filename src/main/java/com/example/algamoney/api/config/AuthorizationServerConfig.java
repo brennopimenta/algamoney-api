@@ -28,12 +28,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("angular")
-                .secret("teste")
-                .authorizedGrantTypes("password", "refresh_token")
-                .scopes("read","write")
-                .accessTokenValiditySeconds(20)
-        .refreshTokenValiditySeconds(3600 * 24);
+                    .withClient("angular")
+                    .secret("teste")
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .scopes("read","write") //cliente (front-end) Angular tem o scopo para ler e escrever
+                    .accessTokenValiditySeconds(60)
+                    .refreshTokenValiditySeconds(3600 * 24)
+                .and()
+                    .withClient("mobile")
+                    .secret("teste")
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .scopes("read") //cliente (front-end) Mobile tem o scopo somente para ler
+                    .accessTokenValiditySeconds(60)
+                    .refreshTokenValiditySeconds(3600 * 24);
     }
 
 
