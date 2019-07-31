@@ -5,6 +5,7 @@ import com.example.algamoney.api.exceptionhandler.AlgamoneyExceptionHandler;
 import com.example.algamoney.api.model.Lancamento;
 import com.example.algamoney.api.repository.LancamentoRepository;
 import com.example.algamoney.api.repository.filter.LancamentoFilter;
+import com.example.algamoney.api.repository.projection.ResumoLancamento;
 import com.example.algamoney.api.service.LancamentoService;
 import com.example.algamoney.api.service.exception.PessoaInexistenteOuInativaException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +41,6 @@ public class LancamentoResource {
     @Autowired
     private MessageSource messageSource;
 
-    //Usado para busca com paginação
-    @GetMapping
-    public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
-        return lancamentoRepository.filtrar(lancamentoFilter, pageable);
-
-    }
-
     /*
     //Usado para buscas sem paginação, (padrão)
     @GetMapping
@@ -55,6 +49,20 @@ public class LancamentoResource {
 
         }
      */
+
+    //Usado para busca com paginação
+    @GetMapping
+    public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
+        return lancamentoRepository.filtrar(lancamentoFilter, pageable);
+
+    }
+
+    //@GetMapping usado quando vier na requisicao o parametro resumo, durante a Projeção.
+    @GetMapping(params = "resumo")
+    public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable pageable) {
+        return lancamentoRepository.resumir(lancamentoFilter, pageable);
+
+    }
 
 
     @GetMapping("/{codigo}")
