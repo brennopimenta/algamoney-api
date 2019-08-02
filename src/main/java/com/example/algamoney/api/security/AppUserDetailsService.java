@@ -27,13 +27,14 @@ public class AppUserDetailsService implements UserDetailsService {
         Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
         Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário ou Senha inválido!"));
         //retorna o usuario com suas permissões em coleção buscada pelo methodo abaixo
-        return new User(email, usuario.getSenha(), getPermissoes(usuario));
+        //return new User(email, usuario.getSenha(), getPermissoes(usuario));
+        return  new UsuarioSistema(usuario, getPermissoes(usuario));
     }
 
     //Metodo para restornar as permissões (Roles) do usuario
     private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        usuario.getPermissoes().forEach(permissao -> authorities.add(new SimpleGrantedAuthority(permissao.getDescricao())));
+        usuario.getPermissoes().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescricao())));
         return authorities;
     }
 }
