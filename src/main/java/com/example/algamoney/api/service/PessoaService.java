@@ -15,7 +15,7 @@ public class PessoaService {
 
     public Pessoa atualizar(Long codigo, Pessoa pessoa){
         Pessoa pessoaSalva = buscarPessoaPeloCodigo(codigo);
-        //Bean.Utils do springFramework copia os atributos de um objeto para o outro ignorando o codigo, ótimo para PUT. alteração.
+        //BeanUtils do springFramework copia os atributos de um objeto para o outro ignorando o codigo, ótimo para PUT. alteração.
         BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
         return pessoaRepository.save(pessoaSalva);
 

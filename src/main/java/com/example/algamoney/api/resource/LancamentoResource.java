@@ -87,6 +87,14 @@ public class LancamentoResource {
         lancamentoRepository.delete(codigo);
     }
 
+    @PutMapping("/{codigo}")
+    public ResponseEntity<Lancamento> atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento lancamento){
+        //Usa o lancamentoService para atualizar os dados a ser alterado para o objeto lancamentoSalvo que será persistido.
+        Lancamento lancamentoSalvo = lancamentoService.atualizar(codigo, lancamento);
+        return ResponseEntity.ok(lancamentoSalvo);
+
+    }
+
 
     @ExceptionHandler({ PessoaInexistenteOuInativaException.class})
     public ResponseEntity<Object> handlePessoaInexistenteOuInativaException(PessoaInexistenteOuInativaException ex){
