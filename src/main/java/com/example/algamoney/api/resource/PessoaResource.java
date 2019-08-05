@@ -52,7 +52,6 @@ public class PessoaResource {
     public Pessoa buscarPeloCodigo(@PathVariable Long codigo){
         Pessoa pessoa = pessoaRepository.findOne(codigo);
         return pessoa;
-
     }
 
 
